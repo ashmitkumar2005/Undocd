@@ -59,7 +59,14 @@ function isApiLike(url) {
 }
 
 async function captureNetwork(targetUrl) {
-  const browser = await chromium.launch({ headless: true });
+  const launchOpts = { headless: true };
+  if (process.env.CHROMIUM_PATH) {
+    launchOpts.executablePath = process.env.CHROMIUM_PATH;
+  }
+  if (process.env.CONTAINER === "1") {
+    launchOpts.args = ["--no-sandbox"];
+  }
+  const browser = await chromium.launch(launchOpts);
   const context = await browser.newContext({
     userAgent:
       "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
