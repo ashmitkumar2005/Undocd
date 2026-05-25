@@ -1,0 +1,52 @@
+{
+  "domain": "openweathermap.org",
+  "cached": true,
+  "lastScanned": "2026-05-26T00:00:00Z",
+  "endpoints": [
+    {
+      "url": "https://api.openweathermap.org/data/2.5/weather",
+      "method": "GET",
+      "description": "Current weather by city, coordinates, or zip code",
+      "authRequired": true,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    },
+    {
+      "url": "https://api.openweathermap.org/data/2.5/forecast",
+      "method": "GET",
+      "description": "5-day / 3-hour forecast",
+      "authRequired": true,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    },
+    {
+      "url": "https://api.openweathermap.org/data/2.5/onecall",
+      "method": "GET",
+      "description": "Current, hourly, and daily forecast in one call",
+      "authRequired": true,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    },
+    {
+      "url": "https://api.openweathermap.org/geo/1.0/direct",
+      "method": "GET",
+      "description": "Geocode a city name to latitude and longitude",
+      "authRequired": true,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    },
+    {
+      "url": "https://api.openweathermap.org/data/2.5/air_pollution",
+      "method": "GET",
+      "description": "Air quality index and pollutant concentrations",
+      "authRequired": true,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    }
+  ]
+}

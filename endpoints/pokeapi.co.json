@@ -1,0 +1,61 @@
+{
+  "domain": "pokeapi.co",
+  "cached": true,
+  "lastScanned": "2026-05-26T00:00:00Z",
+  "endpoints": [
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon",
+      "method": "GET",
+      "description": "Paginated list of all Pokemon",
+      "authRequired": false,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/{name}",
+      "method": "GET",
+      "description": "Detailed data for a specific Pokemon by name or id",
+      "authRequired": false,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/type/{name}",
+      "method": "GET",
+      "description": "Damage relations and Pokemon for a type",
+      "authRequired": false,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/ability/{name}",
+      "method": "GET",
+      "description": "Ability description and Pokemon that have it",
+      "authRequired": false,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/move/{name}",
+      "method": "GET",
+      "description": "Move details (power, accuracy, effect)",
+      "authRequired": false,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    },
+    {
+      "url": "https://pokeapi.co/api/v2/generation/{id}",
+      "method": "GET",
+      "description": "Pokemon and moves introduced in a specific generation",
+      "authRequired": false,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    }
+  ]
+}

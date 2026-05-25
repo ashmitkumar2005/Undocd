@@ -1,0 +1,52 @@
+{
+  "domain": "spotify.com",
+  "cached": true,
+  "lastScanned": "2026-05-26T00:00:00Z",
+  "endpoints": [
+    {
+      "url": "https://open.spotify.com/get_access_token?reason=transport&productType=web_player",
+      "method": "GET",
+      "description": "Anonymous access token used by the public web player",
+      "authRequired": false,
+      "corsEnabled": false,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    },
+    {
+      "url": "https://api.spotify.com/v1/search",
+      "method": "GET",
+      "description": "Search tracks, artists, albums, playlists by keyword",
+      "authRequired": true,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    },
+    {
+      "url": "https://api.spotify.com/v1/tracks/{id}",
+      "method": "GET",
+      "description": "Fetch a single track's metadata",
+      "authRequired": true,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    },
+    {
+      "url": "https://api.spotify.com/v1/artists/{id}",
+      "method": "GET",
+      "description": "Fetch an artist's metadata",
+      "authRequired": true,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    },
+    {
+      "url": "https://api.spotify.com/v1/browse/new-releases",
+      "method": "GET",
+      "description": "Newly released albums and singles",
+      "authRequired": true,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    }
+  ]
+}

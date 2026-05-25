@@ -1,0 +1,61 @@
+{
+  "domain": "github.com",
+  "cached": true,
+  "lastScanned": "2026-05-26T00:00:00Z",
+  "endpoints": [
+    {
+      "url": "https://api.github.com/users/{username}",
+      "method": "GET",
+      "description": "Get a user's public profile",
+      "authRequired": false,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    },
+    {
+      "url": "https://api.github.com/users/{username}/repos",
+      "method": "GET",
+      "description": "List public repositories for a user",
+      "authRequired": false,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    },
+    {
+      "url": "https://api.github.com/repos/{owner}/{repo}",
+      "method": "GET",
+      "description": "Get a single repository's metadata",
+      "authRequired": false,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    },
+    {
+      "url": "https://api.github.com/search/repositories",
+      "method": "GET",
+      "description": "Search public repositories by keyword",
+      "authRequired": false,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    },
+    {
+      "url": "https://api.github.com/gists/public",
+      "method": "GET",
+      "description": "List recent public gists",
+      "authRequired": false,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    },
+    {
+      "url": "https://api.github.com/repos/{owner}/{repo}/contributors",
+      "method": "GET",
+      "description": "List contributors for a repository",
+      "authRequired": false,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    }
+  ]
+}
