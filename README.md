@@ -1,51 +1,101 @@
 # Undocd
 
-A community-driven collection of free, open APIs and endpoints for developers. Find publicly available endpoints for your apps, projects, and experiments — no API keys required.
+An open-source search engine for publicly accessible API endpoints. Enter any URL, get back the endpoints — cached in this repo, scanned by AI on first lookup, shared with everyone.
 
-## What is Undocd?
+## How it works
 
-Undocd (short for "undocumented") is an open-source repository that gathers freely available API endpoints from across the web. Whether you need weather data, currency conversion, random generation, or any other utility — discover it here.
+1. User enters a URL on the website
+2. The frontend hits `/api/scan?url=<domain>` which reads from `endpoints/<domain>.json` in this repo
+3. **Cached?** Results return instantly from `raw.githubusercontent.com`
+4. **Not cached?** User clicks "request scan" → `/api/queue` appends the URL to `endpoints/_queue.json`
+5. The scanner CLI (`scanner/scan.js`) drains the queue: launches Playwright, captures network requests, asks Groq's Llama 3.3 to extract endpoints, commits the result back to `endpoints/<domain>.json` via Octokit
 
-## Community-Driven
+The repo is the database. Every scan is a commit.
 
-This project thrives on community contributions. Developers worldwide submit endpoints they've discovered, making this a living resource for everyone.
+## Repo structure
 
-## Contributing
+```
+/
+├── app/                    # Next.js 16 frontend + API routes
+│   ├── page.tsx
+│   └── api/
+│       ├── scan/route.ts   # GET /api/scan?url= → reads endpoints/<domain>.json
+│       └── queue/route.ts  # POST /api/queue   → appends to _queue.json
+├── components/             # shadcn/ui based UI components
+├── lib/types.ts            # Shared types (Endpoint, DomainResult, ScanResponse)
+├── endpoints/              # The "database" — one JSON file per domain
+│   ├── github.com.json
+│   ├── spotify.com.json
+│   ├── pokeapi.co.json
+│   ├── openweathermap.org.json
+│   └── _queue.json         # Pending scan requests
+└── scanner/                # Standalone Node CLI — runs locally
+    ├── scan.js             # node scan.js <url> — full scan + commit
+    ├── drain.js            # node drain.js — process every URL in _queue.json
+    ├── package.json
+    └── .env.example
+```
 
-Contributions are welcome! To add an endpoint:
+## Running locally
 
-1. Fork the repository
-2. Add your endpoint to the appropriate category file in `/endpoints/`
-3. Submit a pull request
+### 1. Frontend
 
-### Endpoint Format
+```bash
+npm install
+cp .env.example .env       # add your GitHub PAT for /api/queue to work
+npm run dev                # → http://localhost:3000
+```
+
+The `/api/scan` route works without any keys (reads from public GitHub raw).
+The `/api/queue` route requires `GITHUB_TOKEN` to write `_queue.json` back to the repo.
+
+### 2. Scanner
+
+The scanner runs on your machine on demand. It is intentionally not deployed yet.
+
+```bash
+cd scanner
+npm install
+npx playwright install chromium    # one-time
+cp .env.example .env               # fill in GROQ_API_KEY + GITHUB_TOKEN
+npm run scan -- https://pokeapi.co  # scan a single URL
+npm run drain                       # process every URL in _queue.json
+```
+
+Required env vars:
+
+| Var               | Where to get it                                                     |
+|-------------------|---------------------------------------------------------------------|
+| `GROQ_API_KEY`    | https://console.groq.com — free tier, no card required              |
+| `GITHUB_TOKEN`    | Fine-scoped PAT with `contents:write` on `ashmitkumar2005/Undocd`   |
+
+## Endpoint JSON shape
+
+Each domain file looks like this:
 
 ```json
 {
-  "name": "Endpoint Name",
-  "description": "What this endpoint does",
-  "url": "https://api.example.com/endpoint",
-  "category": "category-name",
-  "auth": "none",
-  "cors": "yes"
+  "domain": "pokeapi.co",
+  "cached": true,
+  "lastScanned": "2026-05-26T00:00:00Z",
+  "endpoints": [
+    {
+      "url": "https://pokeapi.co/api/v2/pokemon/{name}",
+      "method": "GET",
+      "description": "Detailed data for a specific Pokemon by name or id",
+      "authRequired": false,
+      "corsEnabled": true,
+      "status": "working",
+      "lastVerified": "2026-05-26T00:00:00Z"
+    }
+  ]
 }
 ```
 
-## Categories
+## Contributing
 
-- **Finance** — Stock data, crypto prices, currency conversion
-- **Weather** — Current weather, forecasts, geolocation
-- **Random** — Random numbers, quotes, facts, images
-- **Utilities** — URL shorteners, validators, converters
-- **Entertainment** — Movies, games, music data
-- **Development** — APIs useful for coding (JSON validators, etc.)
-- **Science** — Space, biology, chemistry data
-- **Social** — Public data from social platforms
+Pull requests welcome — for endpoint files (`endpoints/<domain>.json`), UI improvements, scanner tweaks, or a deployed scanner host.
 
 ## License
 
-MIT License — free to use, modify, and distribute.
-
----
-
-Made with ♥ by developers, for developers.
+MIT — free to use, modify, and distribute.
