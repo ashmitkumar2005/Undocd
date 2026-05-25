@@ -1,4 +1,4 @@
-import { SUGGESTED_DOMAINS } from "@/lib/mock-data";
+import { SUGGESTED_DOMAINS } from "@/lib/types";
 
 export function EmptyState({
   onPick,

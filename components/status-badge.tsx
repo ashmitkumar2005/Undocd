@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import type { EndpointStatus } from "@/lib/mock-data";
+import type { EndpointStatus } from "@/lib/types";
 
 const STATUS_STYLES: Record<EndpointStatus, string> = {
   working:

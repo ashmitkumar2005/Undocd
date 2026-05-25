@@ -1,5 +1,5 @@
 import { EndpointCard } from "@/components/endpoint-card";
-import type { DomainResult } from "@/lib/mock-data";
+import type { DomainResult } from "@/lib/types";
 
 function timeAgo(iso: string): string {
   const diff = Date.now() - new Date(iso).getTime();

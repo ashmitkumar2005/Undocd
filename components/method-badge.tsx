@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import type { HttpMethod } from "@/lib/mock-data";
+import type { HttpMethod } from "@/lib/types";
 
 const METHOD_STYLES: Record<HttpMethod, string> = {
   GET: "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900/40 dark:bg-emerald-950/40 dark:text-emerald-300",

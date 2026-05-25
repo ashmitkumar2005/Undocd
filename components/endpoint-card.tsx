@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { MethodBadge } from "@/components/method-badge";
 import { StatusBadge } from "@/components/status-badge";
-import type { Endpoint } from "@/lib/mock-data";
+import type { Endpoint } from "@/lib/types";
 
 function timeAgo(iso: string): string {
   const diff = Date.now() - new Date(iso).getTime();
